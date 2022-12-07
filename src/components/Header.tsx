@@ -4,7 +4,7 @@ import {Update} from '@material-ui/icons'
 
 export const Header = () => {
   return (
-    <AppBar position="static" sx={{backgroundColor: '#B12F2F'}}>
+    <AppBar position="static" sx={{backgroundColor: '#a80017'}}>
         <Toolbar>
             <Typography 
                 variant="h6" 
