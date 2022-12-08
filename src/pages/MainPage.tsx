@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import { useGetCityWeatherMutation } from '../store/services/cityWeatherAPI'
 import {Container, TextField, Grid, Button, Typography} from '@material-ui/core'
 import { Add } from '@material-ui/icons';
 
-import { ICityWeather } from '../models/ICityWeather'
-import { CityCard } from '../components/CityCard/CityCard'
+
 import { CardList } from '../components/CardList/CardList';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { addCity } from '../store/slices/citySlice';
@@ -12,9 +11,9 @@ import { addToLocalStorage } from '../helpers/localStorage';
 
 export const MainPage = () => {
   const [cityName, setCityName] = useState<string>('')
-  const [data, setData] = useState<ICityWeather | null>(null)
   const [getCityWeather] = useGetCityWeatherMutation()
   const dispatch = useAppDispatch()
+  
 
   const searchHandler = (e: any) => {
     setCityName(e.target.value)

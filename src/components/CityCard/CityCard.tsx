@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import {Card, Grid, CardActions, CardContent, Button, Typography} from '@material-ui/core';
 import { Update, MoreHoriz, DeleteForever } from '@material-ui/icons'
 import styles from './CityCard.module.css'
+import { useNavigate } from 'react-router-dom'
 
 import { ICityWeather } from '../../models/ICityWeather';
 import { capitalize, temperatureToCelsium } from '../../helpers/text';
@@ -24,6 +25,7 @@ export const CityCard: FC<CityCardProps> = ({data}) => {
     } = data
     const [getCityWeather] = useGetCityWeatherMutation()
     const dispatch = useAppDispatch()
+    const navigate = useNavigate()
 
     const updateHandler = async () => {
         const res: any = await getCityWeather(name);
@@ -72,7 +74,9 @@ export const CityCard: FC<CityCardProps> = ({data}) => {
             <Update sx={{fontSize: 16, mr: 1}}/>
             Update
         </Button>
-        <Button size="small" color='primary' variant='contained'>
+        <Button size="small" color='primary' variant='contained'
+            onClick={() => navigate(`/details/${name}`)}
+        >
             <MoreHoriz sx={{fontSize: 16, mr: 1}}/>
             Details
         </Button>

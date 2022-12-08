@@ -29,7 +29,7 @@ export const citySlice = createSlice({
         },
         fetchCitiesFromLocalStorage: (state, action: PayloadAction<ICityWeather[]>) => {
             state.cities = action.payload
-        }
+        },
     }
 })
 
