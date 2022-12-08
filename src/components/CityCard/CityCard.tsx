@@ -4,8 +4,12 @@ import { Update, MoreHoriz, DeleteForever } from '@material-ui/icons'
 import styles from './CityCard.module.css'
 
 import { ICityWeather } from '../../models/ICityWeather';
-import { capitalize } from '../../helpers/text';
-
+import { capitalize, temperatureToCelsium } from '../../helpers/text';
+import { useAppDispatch } from '../../hooks/redux';
+import { removeCity, updateCity } from '../../store/slices/citySlice';
+import { useGetCityWeatherMutation } from '../../store/services/cityWeatherAPI'
+import { removeLocalStorage } from '../../helpers/localStorage';
+ 
 interface CityCardProps {
     data: ICityWeather
 }
@@ -15,11 +19,22 @@ export const CityCard: FC<CityCardProps> = ({data}) => {
         sys,
         name,
         main,
-        weather
+        weather,
+        id
     } = data
+    const [getCityWeather] = useGetCityWeatherMutation()
+    const dispatch = useAppDispatch()
 
-    let temperatureToCelsium = (temp: number): string => {
-        return `${Math.floor(temp - 273.15)}°C`;
+    const updateHandler = async () => {
+        const res: any = await getCityWeather(name);
+        console.log(JSON.stringify(res, null, 3));
+        
+        dispatch(updateCity(res))
+    }
+
+    const deleteHandler = () => {
+        dispatch(removeCity(id))
+        removeLocalStorage(name)
     }
 
   return (
@@ -51,7 +66,9 @@ export const CityCard: FC<CityCardProps> = ({data}) => {
         </Grid>
       </CardContent>
       <CardActions>
-        <Button size="small" color='warning' variant='contained'>
+        <Button size="small" color='warning' variant='contained'
+            onClick={updateHandler}
+        >
             <Update sx={{fontSize: 16, mr: 1}}/>
             Update
         </Button>
@@ -59,7 +76,9 @@ export const CityCard: FC<CityCardProps> = ({data}) => {
             <MoreHoriz sx={{fontSize: 16, mr: 1}}/>
             Details
         </Button>
-        <Button size="small" color='error' variant='contained'>
+        <Button size="small" color='error' variant='contained'
+            onClick={deleteHandler}
+        >
             <DeleteForever sx={{fontSize: 16, mr: 1}}/>
             Delete
         </Button>
