@@ -4,3 +4,6 @@ export const capitalize = (text: string): string => {
 export const temperatureToCelsium = (temp: number): string => {
     return `${Math.floor(temp - 273.15)}°C`;
 }
+export const getCustomHours = (dt: number) => {
+    return `${new Date(dt * 1000).getHours()}:00`
+}
