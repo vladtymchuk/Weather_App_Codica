@@ -4,7 +4,7 @@ export const addToLocalStorage = (name: string) => {
     } else {
         let temp = JSON.parse(localStorage.cities)
         if (!temp.includes(name)) {
-            temp.push(name)
+            temp.unshift(name)
             localStorage.setItem('cities', JSON.stringify(temp))
         }
     }

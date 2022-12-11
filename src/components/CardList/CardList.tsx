@@ -3,7 +3,6 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { Grid } from "@material-ui/core"
 
 import { CityCard } from '../CityCard/CityCard'
-import { AppDispatch } from '../../store/store'
 import { ICityWeather } from '../../models/ICityWeather'
 import { fetchCitiesFromLocalStorage } from '../../store/slices/citySlice'
 

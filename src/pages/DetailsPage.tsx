@@ -4,7 +4,8 @@ import {useParams} from 'react-router-dom'
 
 import { ICityWeather } from '../models/ICityWeather'
 import { useAppSelector } from '../hooks/redux'
-import { getCustomHours, temperatureToCelsium } from '../helpers/text'
+import { HourlyList } from '../components/HourlyList/HourlyList'
+import { DetailInfo } from '../components/DetailInfo/DetailInfo'
 
 
 export const DetailsPage: FC = () => {
@@ -25,7 +26,7 @@ export const DetailsPage: FC = () => {
         (async () => {
             try {
                 const response: any = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${city?.coord.lat}&lon=${city?.coord.lon}&exclude=minutely,daily&appid=${process.env.REACT_APP_API_KEY}`).then(res => res.json())
-                console.log(JSON.stringify(response));
+                console.log("RS",JSON.stringify(response));
                 setCityHourlyRes(response)
             } catch ({message}) {
                 console.log(message);
@@ -35,25 +36,12 @@ export const DetailsPage: FC = () => {
 
     return (
         <Container>
-            <Typography variant='h3' sx={{m:1}} textAlign='left'>
-                {city?.name}
+            <Typography variant='h3' sx={{mb: 2, ml: 0, mt: 2}} textAlign='left'>
+                {city?.name}, {city?.sys.country}
             </Typography>
+            {cityHourlyRes && <DetailInfo cityHourlyRes={cityHourlyRes}/>}
             <Grid container spacing={1}>
-                {cityHourlyRes && cityHourlyRes.hourly.slice(0,12).map((item: any, index: number) => {
-                    return (
-                        <Grid item xs={1}>
-                            <Box justifyContent='center' alignItems='center'>
-                                <Typography variant='h5' textAlign='center'>
-                                    {getCustomHours(item.dt)}
-                                 </Typography>
-                                <img src={`http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`} alt="weather" />
-                                <Typography variant='h5' textAlign='center'>
-                                    {temperatureToCelsium(item.temp)}
-                                </Typography>  
-                            </Box>
-                        </Grid>
-                    )
-                })}
+                {cityHourlyRes && <HourlyList cityHourlyRes={cityHourlyRes}/>}
             </Grid>
         </Container>
     )
