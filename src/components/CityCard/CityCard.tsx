@@ -75,7 +75,7 @@ export const CityCard: FC<CityCardProps> = ({data}) => {
             Update
         </Button>
         <Button size="small" color='primary' variant='contained'
-            onClick={() => navigate(`/details/${name}`)}
+            onClick={() => navigate(`details/${name}`)}
         >
             <MoreHoriz sx={{fontSize: 16, mr: 1}}/>
             Details

@@ -11,7 +11,7 @@ export const App = () => {
       <Header />
       <Routes>
         <Route path='/Weather_App_Codica' element={<MainPage/>}/>
-        <Route path='/Weather_App_Codica/:name' element={<DetailsPage />}/>
+        <Route path='/Weather_App_Codica/details/:name' element={<DetailsPage />}/>
       </Routes>
     </>
   );
