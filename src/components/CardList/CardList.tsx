@@ -11,7 +11,7 @@ export const CardList = () => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        if (localStorage.getItem('cities') !== null){
+        if (localStorage.getItem('cities') !== null && cities.length === 0){
             fetchCities(JSON.parse(localStorage.cities))
         }
       }, [])

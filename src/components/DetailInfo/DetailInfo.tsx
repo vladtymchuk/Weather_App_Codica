@@ -158,29 +158,6 @@ export const DetailInfo: FC<DetailInfoProps> = ({cityHourlyRes}) => {
                     </CardContent>
                 </Card>
             </Grid>
-
-
-
-
-            <Grid item 
-                justifyContent={'center'} 
-                alignItems={'flex-end'}
-                xs={5}
-            >
-                <Typography color='textSecondary'>
-                Sunrise
-                </Typography>
-            </Grid>
-                <Grid item 
-                justifyContent={'flex-end'} 
-                alignItems={'flex-start'}
-                xs={5}>Sunrise</Grid>
-                
-                    
-                
-                <Grid item xs={12}>
-
-                </Grid>
         </Grid>
     )
 }
