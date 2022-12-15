@@ -1,6 +1,7 @@
 {
   "name": "weather_app",
   "version": "0.1.0",
+  "homepage": "https://vladtymchuk.github.io/Weather_App_Codica",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",
@@ -16,6 +17,7 @@
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
     "@types/react-redux": "^7.1.24",
+    "gh-pages": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
@@ -25,6 +27,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+  + "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
