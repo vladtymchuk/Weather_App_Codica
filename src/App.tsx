@@ -10,8 +10,8 @@ export const App = () => {
     <>
       <Header />
       <Routes>
-        <Route path='/' element={<MainPage/>}/>
-        <Route path='details/:name' element={<DetailsPage />}/>
+        <Route path='/Weather_App_Codica' element={<MainPage/>}/>
+        <Route path='/Weather_App_Codica/:name' element={<DetailsPage />}/>
       </Routes>
     </>
   );
